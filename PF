@@ -1,0 +1,70 @@
+    getgenv().walkspeed = 50 -- max 150
+    pcall(getgenv().unload)
+    local requireModule
+    for i, v in next, getgc(false) do
+        if type(v) == "function" and debug.getinfo(v).name == "require" and islclosure(v) then
+            requireModule = v
+            break
+        end
+    end
+    
+    local network = requireModule("NetworkClient")
+    local characterObj = requireModule("CharacterObject")
+    
+    local setBaseWalkSpeed = characterObj.setBaseWalkSpeed
+    function characterObj:setBaseWalkSpeed(speed, ...)
+        speed = walkspeed or speed
+        return setBaseWalkSpeed(self, speed, ...)
+    end
+    
+    local timeUpdates = {
+        equip = 2,
+        newbullets = 3,
+        bullethit = 6,
+        knifehit = 4,
+        newgrenade = 3,
+        spotplayers = 2,
+        updatesight = 3,
+    }
+    
+    local maxSpeed = 40
+    local lastTime, lastPosition
+    local currentAddition = 0
+    local send = network.send
+    function network:send(name, ...)
+        if name == "repupdate" then
+            local position, angles, time = ...
+    
+            --currentAddition = currentAddition + 1
+            if lastTime then
+                local velocity = ((position - lastPosition) / (time - lastTime)).Magnitude - maxSpeed
+                
+                if velocity > 0 then
+                    print(velocity / maxSpeed)
+                    currentAddition = currentAddition + velocity / maxSpeed
+                end
+            end
+    
+            lastTime = time
+            time = time + currentAddition
+            lastPosition = position
+            return send(self, name, position, angles, time)
+        elseif name == "spawn" then
+            lastTime = nil
+        elseif name == "ping" then
+            local a, b, c = ...
+            return send(self, name, a, b, -c)
+        elseif timeUpdates[name] then
+            local args = table.pack(...)
+            local idx = timeUpdates[name]
+            args[idx] = args[idx] + currentAddition
+            return send(self, name, table.unpack(args))
+        end
+    
+        return send(self, name, ...)
+    end
+    
+    getgenv().unload = function()
+        characterObj.setBaseWalkSpeed = setBaseWalkSpeed
+        network.send = send
+    end
