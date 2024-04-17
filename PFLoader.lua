@@ -1,3 +1,5 @@
+-- THIS SCRIPT IS THE LOADER FOR THE MAIN SCRIPT
+
 local loader = Instance.new("ScreenGui")
 local outline1 = Instance.new("Frame")
 local outline2 = Instance.new("Frame")
