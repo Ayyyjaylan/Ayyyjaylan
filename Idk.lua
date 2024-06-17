@@ -56,14 +56,12 @@ FOV.Radius = 100
 
 --// Disable anti cheat
 
-local Disabler = Instance.new("RemoteEvent");
-Disabler.Name = "ZnVsbHkgbWFkZSBieSBkZW1lbnRpYSBlbmpveWVy" --// weird string that is checked in a network module
-Disabler.Parent = ReplicatedStorage;
+print("A")
 
 --// Rest
 
 local Window = Library:CreateWindow({
-    Title = 'pf.lol | Made by https://discord.gg/kgcbSYEb',
+    Title = 'pf.lol | beta',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
