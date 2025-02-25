@@ -1,3 +1,4 @@
+
 --[[
 
     Notes:
@@ -3804,11 +3805,11 @@ function library.new(options)
 	autocanvasresize(newlibrary.dir.gui.main.left.panel.container.list, newlibrary.dir.gui.main.left.panel.container)
 
 	newlibrary:applybuttoneffect(newlibrary.dir.gui.main.left.panel.discord, function()
-		setclipboard("https://discord.gg/evov3")
+		setclipboard("https://discord.gg/XZHTtDzrvT")
 	end, "categorybackground")
 
 	newlibrary:applybuttoneffect(newlibrary.dir.gui.main.left.panel.website, function()
-		setclipboard("https://projectevo.xyz")
+		setclipboard("https://discord.gg/XZHTtDzrvT")
 	end, "categorybackground")
 
 	utils:protectinstance(newlibrary.dir)
