@@ -3686,7 +3686,7 @@ function library.new(options)
 						Name = "game"
 					}),
 					create("ImageLabel", {
-						Image = "rbxassetid://127783950274229",
+						Image = "rbxassetid://78128317942894",
 						BackgroundColor3 = Color3.new(1, 1, 1),
 						BackgroundTransparency = 1,
 						Position = UDim2.new(0, 8, 0, 16),
