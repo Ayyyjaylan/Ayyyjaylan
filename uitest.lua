@@ -588,16 +588,23 @@ do
     end
 
     function utility.table.getdescendants(tbl, new)
-        local new = new or {}
-        for i,v in next, tbl do
-            if typeof(v) == 'table' then
+        if typeof(tbl) ~= "table" then
+            warn("Expected a table, but got " .. typeof(tbl))
+            return new or {}
+        end
+    
+        new = new or {}
+    
+        for i, v in next, tbl do
+            if typeof(v) == "table" then
                 utility.table.getdescendants(v, new)
             else
                 new[i] = v
             end
         end
+    
         return new
-    end
+    end    
 
     function utility.table.deepcopy(tbl)
         local new = {}
