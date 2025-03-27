@@ -1721,7 +1721,6 @@ do
         self:add_object("ImageLabel", {
           Name = generate_guid(),
           BackgroundTransparency = 1,
-          Image = getsynasset(assets.colorpicker),
           BorderSizePixel = 0,
           Size = UDim2.new(1, 0, 1, 0),
           Position = UDim2.new(0, 0, 0, 0),
