@@ -314,7 +314,7 @@ do
                             BackgroundTransparency = 1,
                             Size = UDim2.new(0, 14, 0, 14),
                             Position = UDim2.new(0, 0, 0, 0),
-                            Image = getsynasset(assets.checkmark),
+                            Image = "rbxassetid://" .. assets.colorpicker_location,
                             ImageColor3 = Color3.fromRGB(255, 0, 0),
                             ScaleType = Enum.ScaleType.Fit,
                             Visible = false,
