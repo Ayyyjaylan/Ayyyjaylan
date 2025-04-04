@@ -3440,4 +3440,7 @@ function library:create_settings_tab(menu)
     return tab, settings_main
 end
 
+library.has_init = true
+getgenv().library = library
+library.menu:refresh()
 return library
